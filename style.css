@@ -1,0 +1,28 @@
+body{
+    background-color: rgba(13, 146, 172, 0.826);
+}
+
+.mother{
+    display: flex;
+    flex-direction: column;
+}
+
+.father{
+    display: flex;
+}
+
+.divider{
+    border: 1px, solid, blue;
+    margin-top:12px;
+}
+
+.ancestor-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between student containers as needed */
+}
+
+.studentContainer {
+    flex: 1 1 calc(50% - 20px); /* Adjust the width of each student container */
+    box-sizing: border-box;
+}
