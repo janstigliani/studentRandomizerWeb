@@ -16,66 +16,125 @@ studentData = studentData.sort((a, b) => {
     return 0;
 });
 
+const avatarMaleImages = [
+    "./assets/avatar1.jpeg",
+    "./assets/avatar2.jpeg",
+    "./assets/avatar3.jpeg",
+    "./assets/avatar4.jpeg",
+    "./assets/avatar5.jpeg",
+    "./assets/avatar6.jpeg",
+    "./assets/avatar7.jpeg",
+    "./assets/avatar8.jpeg",
+    "./assets/avatar12.jpeg",
+]
+
+const avatarFemaleImages = [
+    "./assets/avatar18.jpeg",
+    "./assets/avatar19.jpeg",
+    "./assets/avatar20.jpeg",
+    "./assets/avatar6.jpeg",
+    "./assets/avatar4.jpeg",
+]
+
+const avatarDiversityImages = [
+    "./assets/avatar14.jpeg",
+    "./assets/avatar15.jpeg",
+    "./assets/avatar16.jpeg",
+    "./assets/avatar17.jpeg",
+    "./assets/avatar2.jpeg",
+    "./assets/avatar4.jpeg",
+    "./assets/avatar7.jpeg",
+]
+
+const avatarAgeImages = [
+    "./assets/avatar1.jpeg",
+    "./assets/avatar4.jpeg",
+    "./assets/avatar7.jpeg",
+    "./assets/avatar9.jpeg",
+    "./assets/avatar10.jpeg",
+    "./assets/avatar11.jpeg",
+    "./assets/avatar12.jpeg",
+    "./assets/avatar13.jpeg",
+]
+
+
+
+const randomMaleImage = avatarMaleImages[Math.floor(Math.random() * avatarMaleImages.length)];
+const randomFemaleImage = avatarFemaleImages[Math.floor(Math.random() * avatarFemaleImages.length)];
+const randomDiversityImage = avatarDiversityImages[Math.floor(Math.random() * avatarDiversityImages.length)];
+const randomAgeImage = avatarAgeImages[Math.floor(Math.random() * avatarAgeImages.length)];
+
+
 for (let i = 0; i < studentData.length; i++) {
 
     const student = studentData[i];
 
-    const studentContainer = document.createElement("div");
+    // Create the external container
+    const externalContainer = document.createElement("div");
+    externalContainer.classList.add("external-container");
 
-    studentContainer.classList.add("studentContainer");
+    const randomMaleImage = avatarMaleImages[Math.floor(Math.random() * avatarMaleImages.length)];
+    const randomFemaleImage = avatarFemaleImages[Math.floor(Math.random() * avatarFemaleImages.length)];
+    const randomDiversityImage = avatarDiversityImages[Math.floor(Math.random() * avatarDiversityImages.length)];
+    const randomAgeImage = avatarAgeImages[Math.floor(Math.random() * avatarAgeImages.length)];
 
-    studentContainer.classList.add("mother");
+    // Create the avatar container
+    const avatarContainer = document.createElement("div");
+    avatarContainer.classList.add("avatar-container");
+
+    // Add the image to the avatar container
+    const avatar = document.createElement("img");
+    if (student.gender==="M" && student.nationality==="Italiana" && student.age>35) {
+        avatar.src = randomAgeImage;
+    } else if (student.gender==="M" && student.nationality==="Italiana" || student.nationality==="Albanese") {
+        avatar.src = randomMaleImage;
+    } else if (student.gender==="M" && student.nationality!=="Italiana") {
+        avatar.src = randomDiversityImage;
+    } else if (student.gender!=="M") {
+        avatar.src = randomFemaleImage;
+    } else {
+        avatar.src = randomMaleImage;
+    }
     
+    avatar.alt = student.name + " " + student.surname;
+    avatar.classList.add("avatar");
+    avatarContainer.appendChild(avatar);
 
-    const nameContainer = document.createElement(`h3`);
+    // Create the student container
+    const studentContainer = document.createElement("div");
+    studentContainer.classList.add("studentContainer");
+    studentContainer.classList.add("mother");
 
-    // nameContainer.classList.add("name-container");
-
+    const nameContainer = document.createElement("h3");
     const nameNode = document.createTextNode(student.name + " " + student.surname);
-
     nameContainer.appendChild(nameNode);
 
-
-
     const countryContainer = document.createElement("span");
-    
-    const nationalityNode = document.createTextNode("nazionalità: "+ student.nationality);
-
+    const nationalityNode = document.createTextNode("Nazionalità: " + student.nationality);
     countryContainer.appendChild(nationalityNode);
 
-
-
     const genderContainer = document.createElement("span");
-    
-    const genderNode = document.createTextNode("genere: "+ student.gender);
-
+    const genderNode = document.createTextNode("Genere: " + student.gender);
     genderContainer.appendChild(genderNode);
 
-
-
     const ageContainer = document.createElement("span");
-
     const current = new Date();
-
     const currentYear = current.getFullYear();
-
     const age = currentYear - student.yob;
-    
-    const ageode = document.createTextNode("età: "+ age + " anni");
-
-    ageContainer.appendChild(ageode);
-
-
+    const ageNode = document.createTextNode("Età: " + age + " anni");
+    ageContainer.appendChild(ageNode);
 
     studentContainer.appendChild(nameContainer);
-
     studentContainer.appendChild(countryContainer);
-
     studentContainer.appendChild(genderContainer);
-
     studentContainer.appendChild(ageContainer);
 
-    container.appendChild(studentContainer);
+    // Append the avatar container and student container to the external container
+    externalContainer.appendChild(avatarContainer);
+    externalContainer.appendChild(studentContainer);
+
+    // Append the external container to the main container
+    container.appendChild(externalContainer);
 }
 
 ///TO DO:

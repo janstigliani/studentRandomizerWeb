@@ -1,17 +1,35 @@
-body{
-    background-color: rgba(13, 146, 172, 0.826);
+main {
+    background-color: #031525;
+    background-image: url(./assets/background.png) ;
+    background-size: cover;
 }
 
-.mother{
+header {
+    height: 420px;
+    background-image: url(./assets/header-background.png) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.head {
+    display: inline;
+    position: relative;
+    left: 20px;
+    top: 110px;
+    color: #f9cd8b97;
+}
+
+.mother {
     display: flex;
     flex-direction: column;
 }
 
-.father{
+.father {
     display: flex;
 }
 
-.divider{
+.divider {
     border: 1px, solid, blue;
     margin-top:12px;
 }
@@ -19,10 +37,41 @@ body{
 .ancestor-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap between student containers as needed */
+    column-gap: 200px;
+    row-gap: 30px;
 }
 
 .studentContainer {
-    flex: 1 1 calc(50% - 20px); /* Adjust the width of each student container */
-    box-sizing: border-box;
+    flex: 1 ;
+    background-color: #F5F5F5;
 }
+
+.no-margin{
+    margin: 0px;
+}
+
+.external-container {
+    display: flex;
+
+    align-items: center;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #7c7a7a5e;
+    border-radius: 12px;
+    padding: 12px;
+    width: 420px;
+    margin: 20px;
+    margin-left: 180px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+}
+
+.avatar-container {
+    margin-right: 20px; 
+}
+
+.avatar {
+    width: 200px;
+    border-radius: 50%;
+}
+
