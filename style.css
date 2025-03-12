@@ -9,6 +9,9 @@ header {
     background: rgb(7,5,40);
     background: linear-gradient(0deg, rgba(7,5,40,1) 0%, rgba(10,106,194,1) 100%);
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
@@ -18,10 +21,6 @@ footer {
     position: relative;
 }
 .head {
-    display: inline;
-    position: relative;
-    left: 20px;
-    top: 110px;
     color: #f9cd8b97;
 }
 
