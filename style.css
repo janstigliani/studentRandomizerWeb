@@ -11,13 +11,15 @@ main {
     font-weight: 400;
     font-style: normal;
     font-size: large;
+    min-height: 68vh;
 }
 
 header {
-    height: 150px;
+    height: 200px;
     background: rgba(7,5,40,0.264);
     background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10,106,194,0.701) 100%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -29,6 +31,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* position: relative;
+    top: 800px; */
 }
 
 .head {
@@ -102,3 +106,21 @@ footer {
     font-weight: 400;
     font-style: normal;
   }
+
+.logo {
+    width: 64px;
+    justify-self: center;
+    align-self: center;
+}
+
+button {
+    min-width: 100px;
+    border-radius: 20%;
+    background: rgba(7,5,40,0.264);
+    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10,106,194,0.701) 100%);
+    font-family: "Smythe", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+    color: #f9cd8b;
+}

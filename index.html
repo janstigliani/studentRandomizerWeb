@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Randomizer</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="no-margin">
 
     <header>
         <h1 class="head notable-regular">Student Randomizer</h1>
+        <div>
+            <button onclick="orderByName()"><div class="mother">
+                <img class="logo" src="./assets/name-icon.jpg" alt="">  ordina per nome
+            </div></button>         
+            <button onclick="shuffle()"> <div class="mother">
+                <img img class="logo" src="./assets/randomize-icon.jpg" alt=""> randomizza 
+            </div></button>
+            <button onclick="orderByAge()"> <div class="mother">
+                <img img class="logo" src="./assets/age-icon.jpg" alt=""> ordina per età
+            </div></button>         
+        </div>
+
     </header>
 
     <main>
@@ -22,4 +36,5 @@
 
 </body>
 <script type="module" src="./src/app.js"></script>
+
 </html>
