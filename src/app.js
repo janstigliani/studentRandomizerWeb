@@ -2,19 +2,19 @@ import DataService from "./services/data-service.js";
 
 const service = new DataService();
 
-let studentData = service.getStudentsData();
+let studentData = service.getShuffledStudents();
 
 const container = document.getElementById("students-container");
 
-studentData = studentData.sort((a, b) => {
-    if (a.name < b.name) {
-        return -1;
-    }
-    if (a.name > b.name) {
-        return 1;
-    }
-    return 0;
-});
+// studentData = studentData.sort((a, b) => {
+//     if (a.name < b.name) {
+//         return -1;
+//     }
+//     if (a.name > b.name) {
+//         return 1;
+//     }
+//     return 0;
+// });
 
 const avatarMaleImages = [
     "./assets/avatar1.jpeg",
@@ -57,19 +57,10 @@ const avatarAgeImages = [
     "./assets/avatar13.jpeg",
 ]
 
-
-
-const randomMaleImage = avatarMaleImages[Math.floor(Math.random() * avatarMaleImages.length)];
-const randomFemaleImage = avatarFemaleImages[Math.floor(Math.random() * avatarFemaleImages.length)];
-const randomDiversityImage = avatarDiversityImages[Math.floor(Math.random() * avatarDiversityImages.length)];
-const randomAgeImage = avatarAgeImages[Math.floor(Math.random() * avatarAgeImages.length)];
-
-
 for (let i = 0; i < studentData.length; i++) {
 
     const student = studentData[i];
 
-    // Create the external container
     const externalContainer = document.createElement("div");
     externalContainer.classList.add("external-container");
 
@@ -78,13 +69,11 @@ for (let i = 0; i < studentData.length; i++) {
     const randomDiversityImage = avatarDiversityImages[Math.floor(Math.random() * avatarDiversityImages.length)];
     const randomAgeImage = avatarAgeImages[Math.floor(Math.random() * avatarAgeImages.length)];
 
-    // Create the avatar container
     const avatarContainer = document.createElement("div");
     avatarContainer.classList.add("avatar-container");
 
-    // Add the image to the avatar container
     const avatar = document.createElement("img");
-    if (student.gender==="M" && student.nationality==="Italiana" && student.age>35) {
+    if (student.gender==="M" && student.nationality==="Italiana" && student.getAge()>35) {
         avatar.src = randomAgeImage;
     } else if (student.gender==="M" && student.nationality==="Italiana" || student.nationality==="Albanese") {
         avatar.src = randomMaleImage;
@@ -100,7 +89,6 @@ for (let i = 0; i < studentData.length; i++) {
     avatar.classList.add("avatar");
     avatarContainer.appendChild(avatar);
 
-    // Create the student container
     const studentContainer = document.createElement("div");
     studentContainer.classList.add("studentContainer");
     studentContainer.classList.add("mother");
@@ -118,10 +106,7 @@ for (let i = 0; i < studentData.length; i++) {
     genderContainer.appendChild(genderNode);
 
     const ageContainer = document.createElement("span");
-    const current = new Date();
-    const currentYear = current.getFullYear();
-    const age = currentYear - student.yob;
-    const ageNode = document.createTextNode("Età: " + age + " anni");
+    const ageNode = document.createTextNode("Età: " + student.getAge() + " anni");
     ageContainer.appendChild(ageNode);
 
     studentContainer.appendChild(nameContainer);
@@ -129,11 +114,9 @@ for (let i = 0; i < studentData.length; i++) {
     studentContainer.appendChild(genderContainer);
     studentContainer.appendChild(ageContainer);
 
-    // Append the avatar container and student container to the external container
     externalContainer.appendChild(avatarContainer);
     externalContainer.appendChild(studentContainer);
 
-    // Append the external container to the main container
     container.appendChild(externalContainer);
 }
 
@@ -141,5 +124,5 @@ for (let i = 0; i < studentData.length; i++) {
 //- aggiungere genere                                           DONE
 //- aggiungere eta'                                             DONE
 //- allineare le schede degli studenti a due a due              DONE
-//- rendere il sito molto bello per il docente
+//- rendere il sito molto bello per il docente                  DONE
 //- ordinare gli studenti per ordine alfabetico di nome         DONE

@@ -1,3 +1,5 @@
+import Student from "../model/student.js"
+
 class DataService {
   
     constructor() {
@@ -102,8 +104,75 @@ class DataService {
                     8
                 ]
             }
-        ]
-        return data;
+        ];
+
+        const students = this.createStudentFromRawData(data);
+
+        return students;
+
+        // const richData = this.addAge(data)
+        // return richData;
+    };
+
+    // addAge(studentArray) {
+    //     const newData = studentArray.map(student => {
+    //     const current = new Date();
+    //     const currentYear = current.getFullYear();
+    //     const age = currentYear - student.yob;
+    //     student.age = age;
+    //     return student;
+    //     })
+
+    //     return newData;
+    // }
+
+    createStudentFromRawData(data) {
+        const students = [];
+        for (const studentOBJ of data) {
+            const newStudent = new Student(studentOBJ.name, studentOBJ.surname, studentOBJ.yob, studentOBJ.gender, studentOBJ.nationality);
+            students.push(newStudent);
+        }
+        return students;
+    }
+
+    getStudentByName() {
+        const students = this.getStudentsData();
+        const arrayOfStudents = students.slice();
+        arrayOfStudents.sort((s1,s2) => s1.compareByName(s2));
+        return arrayOfStudents;
+    }
+
+    getStudentByAge() {
+        const students = this.getStudentsData();
+        const arrayOfStudents = students.slice();
+        arrayOfStudents.sort((s1,s2) => s1.compareByAge(s2));
+        return arrayOfStudents;
+    }
+
+    getShuffledStudents() {
+        const students = this.getStudentsData();
+        const arrayOfStudents = students.slice();
+        const shuffledStudents = this.shuffleArray(arrayOfStudents);
+        return shuffledStudents;
+    }
+
+    shuffleArray(array) {
+        // const newArray = array.slice();
+        // newArray.sort(() => Math.random()-0.5);
+        // return newArray;
+
+        const cloneArray = array.slice();
+        const array1 = [];
+
+        while(cloneArray.length > 0) {
+            const randomIndex = Math.floor(Math.random()*cloneArray.length);
+            const randomStudent = cloneArray[randomIndex];
+            array1.push(randomStudent);
+            cloneArray.splice(randomIndex, 1);
+            // const randomStudent = cloneArray.splice(randomIndex,1);
+            // array1.push(randomStudent);
+        }
+        return array1;
     }
   
 }

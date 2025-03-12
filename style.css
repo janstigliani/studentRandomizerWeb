@@ -1,27 +1,44 @@
-main {
-    background-color: #031525;
-    background-image: url(./assets/background-1.jpg) ;
+@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Notable&family=Smythe&display=swap');
+
+body {
+    background-image: url(./assets/background-alternativo.jpg) ;
     background-size: cover;
 }
 
+main {
+    font-family: "Smythe", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+}
+
 header {
-    height: 200px;
-    background: rgb(7,5,40);
-    background: linear-gradient(0deg, rgba(7,5,40,1) 0%, rgba(10,106,194,1) 100%);
-    position: relative;
+    height: 150px;
+    background: rgba(7,5,40,0.264);
+    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10,106,194,0.701) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 footer {
-    height: 200px;
-    background: rgb(7,5,40);
-    background: linear-gradient(0deg, rgba(7,5,40,1) 0%, rgba(10,106,194,1) 100%);
-    position: relative;
+    height: 100px;
+    background: rgba(7, 5, 40, 0.264);
+    background: linear-gradient(0deg, rgba(10, 105, 194, 0.701) 0%, rgba(7, 5, 40, 0) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .head {
-    color: #f9cd8b97;
+    color: #f9cd8b;
+    font-size: xx-large;
+}
+
+.foot {
+    color: #f9cd8b;
+    font-size: x-large;
 }
 
 .mother {
@@ -80,3 +97,8 @@ footer {
     border-radius: 50%;
 }
 
+.notable-regular {
+    font-family: "Notable", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
