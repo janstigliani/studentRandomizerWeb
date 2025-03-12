@@ -1,26 +1,49 @@
+/**
+ * The JavaScript code defines functions to order, shuffle, and render student data fetched from a
+ * DataService module.
+ */
 import DataService from "./services/data-service.js";
 
 const service = new DataService();
 
+/**
+ * The function `orderByName` retrieves student data by name and then renders it.
+ */
 function orderByName() {
     let studentData = service.getStudentByName();
     render(studentData)
 };
 
+/**
+ * The function `shuffle` retrieves shuffled student data and renders it.
+ */
 function shuffle() {
     let studentData = service.getShuffledStudents();
     render(studentData)
 };
 
+/**
+ * The function orderByAge retrieves student data by age and then renders it.
+ */
 function orderByAge() {
     let studentData = service.getStudentByAge();
     render(studentData)
 };
 
+/* The lines `window.orderByAge = orderByAge;`, `window.orderByName = orderByName;`, and
+`window.shuffle = shuffle;` are assigning the functions `orderByAge`, `orderByName`, and `shuffle`
+to properties of the `window` object in the browser environment. */
 window.orderByAge = orderByAge;
 window.orderByName = orderByName;
 window.shuffle = shuffle;
 
+/**
+ * The `render` function displays student data in a formatted layout on a web page, grouping students
+ * in pairs and including their avatar, name, nationality, gender, and age.
+ * @param studentData - An array of student objects, where each student object contains properties like
+ * `name`, `surname`, `avatar`, `nationality`, `gender`, and a method `getAge()` that returns the age
+ * of the student.
+ */
 function render(studentData) {
     const container = document.getElementById("students-container");
     container.innerHTML = ``;
@@ -69,13 +92,25 @@ function render(studentData) {
 
         if (i < studentData.length-2) {
             const divider = document.createElement("div");
-        divider.classList.add("divider");
-        container.appendChild(divider);
+            divider.classList.add("divider");
+            container.appendChild(divider);
         }
         
     }
 }
 
+/**
+ * The function `createTextElement` creates a new HTML element of a specified type with the given text
+ * content.
+ * @param elementType - The `elementType` parameter in the `createTextElement` function is a string
+ * that specifies the type of HTML element you want to create. For example, it could be "p" for a
+ * paragraph element, "h1" for a heading element, "span" for a span element, etc
+ * @param text - The `text` parameter in the `createTextElement` function is the text content that you
+ * want to set for the newly created text element. This text will be displayed within the element when
+ * it is added to the DOM.
+ * @returns The function `createTextElement` returns a newly created HTML element with the specified
+ * type (e.g., 'div', 'p', 'span') containing the provided text content.
+ */
 function createTextElement(elementType, text) {
     const element = document.createElement(elementType);
 

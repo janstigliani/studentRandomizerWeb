@@ -1,5 +1,8 @@
 import Student from "../model/student.js"
 
+/* The `DataService` class in JavaScript handles student data manipulation and retrieval, including
+sorting students by name and age, shuffling student data, and assigning avatar images based on
+gender, nationality, and age. */
 class DataService {
   
     constructor() {
@@ -138,6 +141,9 @@ class DataService {
     //     return newData;
     // };
 
+   /* The `createStudentFromRawData(data)` method in the `DataService` class is a function that takes
+   an array of raw student data as input and creates an array of `Student` objects based on that
+   data. */
     createStudentFromRawData(data) {
         const students = [];
         for (const studentOBJ of data) {
@@ -147,6 +153,10 @@ class DataService {
         return students;
     };
 
+  /* The `getStudentByName()` method in the `DataService` class is a function that retrieves student
+  data, creates a copy of the array of students, sorts the array of students by name using the
+  `compareByName()` method defined in the `Student` class, and then returns the sorted array of
+  students based on their names. */
     getStudentByName() {
         const students = this.getStudentsData();
         const arrayOfStudents = students.slice();
@@ -154,6 +164,10 @@ class DataService {
         return arrayOfStudents;
     };
 
+  /* The `getStudentByAge()` method in the `DataService` class is a function that retrieves student
+  data, creates a copy of the array of students, sorts the array of students by age using the
+  `compareByAge()` method defined in the `Student` class, and then returns the sorted array of
+  students based on their ages. */
     getStudentByAge() {
         const students = this.getStudentsData();
         const arrayOfStudents = students.slice();
@@ -161,6 +175,8 @@ class DataService {
         return arrayOfStudents;
     };
 
+  /* The `getShuffledStudents()` method in the `DataService` class is a function that performs the
+  following steps: */
     getShuffledStudents() {
         const students = this.getStudentsData();
         const arrayOfStudents = students.slice();
@@ -168,6 +184,8 @@ class DataService {
         return shuffledStudents;
     };
 
+    /* The `shuffleArray(array)` function is a method in the `DataService` class that shuffles the
+    elements of an array in a random order. Here's how it works: */
     shuffleArray(array) {
         // const newArray = array.slice();
         // newArray.sort(() => Math.random()-0.5);
@@ -187,6 +205,13 @@ class DataService {
         return array1;
     };
 
+   /**
+    * The function `getStudentAvatar` assigns a random avatar image based on the student's gender,
+    * nationality, and age.
+    * @param student - The `getStudentAvatar` function takes a `student` object as a parameter and
+    * assigns an avatar image URL to the `student.avatar` property based on the student's gender,
+    * nationality, and age.
+    */
     getStudentAvatar(student) {
         const avatarMaleImages = [
             "./assets/avatar1.jpeg",
