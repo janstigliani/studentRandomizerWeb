@@ -85,6 +85,7 @@ footer {
 .avatar {
     width: 200px;
     border-radius: 50%;
+    box-shadow: 6px 6px 1px 1px #44404038;
 }
 
 .notable-regular {
