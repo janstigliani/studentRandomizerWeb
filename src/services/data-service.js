@@ -223,24 +223,28 @@ class DataService {
             "./assets/avatar7.jpeg",
             "./assets/avatar8.jpeg",
             "./assets/avatar12.jpeg",
+            "./assets/avatar22.jpeg",
+            "./assets/avatar23.jpeg",
+            "./assets/avatar24.jpeg",
         ];
 
         const avatarFemaleImages = [
+            "./assets/avatar4.jpeg",
+            "./assets/avatar6.jpeg",
             "./assets/avatar18.jpeg",
             "./assets/avatar19.jpeg",
             "./assets/avatar20.jpeg",
-            "./assets/avatar6.jpeg",
-            "./assets/avatar4.jpeg",
         ];
 
         const avatarDiversityImages = [
+            "./assets/avatar2.jpeg",
+            "./assets/avatar4.jpeg",
+            "./assets/avatar7.jpeg",
             "./assets/avatar14.jpeg",
             "./assets/avatar15.jpeg",
             "./assets/avatar16.jpeg",
             "./assets/avatar17.jpeg",
-            "./assets/avatar2.jpeg",
-            "./assets/avatar4.jpeg",
-            "./assets/avatar7.jpeg",
+            "./assets/avatar21.jpeg",
         ];
 
         const avatarAgeImages = [
