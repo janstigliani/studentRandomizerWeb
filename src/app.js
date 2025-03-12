@@ -133,6 +133,12 @@ function render(studentData) {
         externalContainer.appendChild(studentContainer);
 
         container.appendChild(externalContainer);
+
+        if (i%2===0){
+            const divider = document.createElement("div");
+            divider.classList.add("divider");
+            container.appendChild(divider);
+        }
     }
 }
 
