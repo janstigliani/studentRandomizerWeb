@@ -1,17 +1,22 @@
 main {
     background-color: #031525;
-    background-image: url(./assets/background.png) ;
+    background-image: url(./assets/background-1.jpg) ;
     background-size: cover;
 }
 
 header {
-    height: 420px;
-    background-image: url(./assets/header-background.png) ;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 200px;
+    background: rgb(7,5,40);
+    background: linear-gradient(0deg, rgba(7,5,40,1) 0%, rgba(10,106,194,1) 100%);
     position: relative;
 }
 
+footer {
+    height: 200px;
+    background: rgb(7,5,40);
+    background: linear-gradient(0deg, rgba(7,5,40,1) 0%, rgba(10,106,194,1) 100%);
+    position: relative;
+}
 .head {
     display: inline;
     position: relative;
@@ -39,6 +44,8 @@ header {
     flex-wrap: wrap;
     column-gap: 200px;
     row-gap: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 .studentContainer {
@@ -61,7 +68,6 @@ header {
     padding: 12px;
     width: 420px;
     margin: 20px;
-    margin-left: 180px;
     box-sizing: border-box;
     background-color: #F5F5F5;
 }
