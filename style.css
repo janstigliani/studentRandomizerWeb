@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Notable&family=Smythe&display=swap');
 
+h3 {
+    display: inline;
+    align-self: center;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+span {
+    align-self: center;
+}
+
 body {
-    background-image: url(./assets/background-alternativo.jpg) ;
+    background-image: url(./assets/background-alternativo.jpg);
     background-size: cover;
 }
 
@@ -10,16 +21,17 @@ main {
     font-family: "Smythe", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: large;
+    font-size: 1.3rem;
     min-height: 68vh;
 }
 
 header {
     height: 230px;
-    background: rgba(7,5,40,0.264);
-    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10,106,194,0.701) 100%);
+    background: rgba(7, 5, 40, 0.264);
+    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10, 106, 194, 0.701) 100%);
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -31,13 +43,11 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: relative;
-    top: 800px; */
 }
 
 .head {
     color: #f9cd8b;
-    font-size: xx-large;
+    font-size: 3rem;
 }
 
 .foot {
@@ -52,48 +62,24 @@ footer {
 
 .father {
     display: flex;
-}
-
-.divider {
-    border: 1px, solid, blue;
-    margin-top:12px;
+    flex-wrap: wrap;
 }
 
 .ancestor-container {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 200px;
+    flex-direction: column;
     row-gap: 30px;
     justify-content: center;
     align-items: center;
 }
 
-.studentContainer {
-    flex: 1 ;
-    background-color: #F5F5F5;
-}
-
-.no-margin{
+.no-margin {
     margin: 0px;
 }
 
-.external-container {
-    display: flex;
-
-    align-items: center;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #7c7a7a5e;
-    border-radius: 12px;
-    padding: 12px;
-    width: 420px;
-    margin: 20px;
-    box-sizing: border-box;
-    background-color: #F5F5F5;
-}
-
 .avatar-container {
-    margin-right: 20px; 
+    margin-right: 20px;
 }
 
 .avatar {
@@ -105,19 +91,20 @@ footer {
     font-family: "Notable", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
+}
 
 .logo {
     width: 64px;
     justify-self: center;
     align-self: center;
+    border-radius: 50%;
 }
 
 button {
     min-width: 100px;
     border-radius: 20%;
-    background: rgba(7,5,40,0.264);
-    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10,106,194,0.701) 100%);
+    background: rgba(7, 5, 40, 0.264);
+    background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10, 106, 194, 0.701) 100%);
     font-family: "Smythe", system-ui;
     font-weight: 400;
     font-style: normal;
@@ -125,9 +112,76 @@ button {
     color: #f9cd8b;
 }
 
+.external-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.student-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 10px 10px 1px 1px #fff3f35e;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #fff3f35e;
+    border-radius: 12px;
+    padding: 12px;
+    width: 30%;
+    margin: 20px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+}
+
+.information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divider {
+    width: 80%;
+    height: 5px;
+    background: rgba(7, 5, 40, 0.264);
+    background: linear-gradient(270deg, rgba(7, 5, 40, 0.462) 0%, rgba(10, 106, 194, 0.701) 100%);
+    border-radius: 50%;
+}
+
+/* Media query for smaller screens */
 @media (max-width: 600px) {
+    header {
+        height: auto;
+        padding: 20px;
+    }
+
     header h1 {
         width: 100%;
         text-align: center;
+        font-size: 1.8rem;
+        word-wrap: break-word; /* Allow text to wrap */
+    }
+
+    button {
+        width: 100%;
+        font-size: medium;
+        margin: 5px 0;
+    }
+
+    .external-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .student-container {
+        width: 99%;
+        margin: 10px 0;
+    }
+
+    .divider {
+        width: 99%;
     }
 }

@@ -1,12 +1,13 @@
 class Student {
 
-    constructor(name, surname, yob, gender, nationality, marks = []) {
+    constructor(name, surname, yob, gender, nationality, avatar = "./assets/avatar1.jpeg", marks = []) {
         this.name = name;
         this.surname = surname;
         this.yob = yob;
         this.gender = gender;
         this.nationality = nationality;
         this.marks = marks;
+        this.avatar = avatar
     }
 
     getAge(){
