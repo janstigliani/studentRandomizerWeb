@@ -7,123 +7,40 @@ class DataService {
   
     constructor() {
 
-    }
+    };
 
-    getStudentsData() {
-        const data = [
-            {
-                "name": "Lorenzo",
-                "surname": "Puppo",
-                "yob": 1995,
-                "nationality": "Italiana",
-                "gender": "M",
-                "avatar": "./assets/avatar7.jpeg",
-                "marks": [
-                    8,
-                    9,
-                    10
-                ]
-            },
-            {
-                "name": "Jan",
-                "surname": "Stigliani",
-                "yob": 2000,
-                "nationality": "Italiana",
-                "gender": "M",
-                "avatar": "./assets/avatar5.jpeg",
-                "marks": [
-                    7,
-                    7,
-                    8
-                ]
-            },
-            {
-                "name": "Giovanni",
-                "surname": "Sussarellu",
-                "yob": 1981,
-                "nationality": "Italiana",
-                "gender": "M",
-                "avatar": "./assets/avatar12.jpeg",
-                "marks": [
-                    7,
-                    6,
-                    8
-                ]
-            },
-            {
-                "name": "Sara",
-                "surname": "De Prà",
-                "yob": 1989,
-                "nationality": "Italiana",
-                "gender": "Fluid",
-                "avatar": "./assets/avatar19.jpeg",
-                "marks": [
-                    9,
-                    6,
-                    8
-                ]
-            },
-            {
-                "name": "Jeremias",
-                "surname": "Cedeno",
-                "yob": 2003,
-                "nationality": "Ecuadoriano",
-                "gender": "M",
-                "avatar": "./assets/avatar14.jpeg",
-                "marks": [
-                    6,
-                    10,
-                    7
-                ]
-            },
-            {
-                "name": "Laura",
-                "surname": "Mazza",
-                "yob": 1984,
-                "nationality": "Italiana",
-                "gender": "F",
-                "avatar": "./assets/avatar20.jpeg",
-                "marks": [
-                    4,
-                    2,
-                    6
-                ]
-            },
-            {
-                "name": "Eusebio",
-                "surname": "Veizi",
-                "yob": 1993,
-                "nationality": "Albanese",
-                "gender": "M",
-                "avatar": "./assets/avatar1.jpeg",
-                "marks": [
-                    5,
-                    7,
-                    6
-                ]
-            },
-            {
-                "name": "Hugo",
-                "surname": "Martinez",
-                "yob": 1994,
-                "nationality": "Salvadoregna",
-                "gender": "F",
-                "avatar": "./assets/avatar16.jpeg",
-                "marks": [
-                    10,
-                    10,
-                    8
-                ]
-            }
-        ];
+    // useResponse(response) {
+    //     const jsonPromise = response.json();
+    //     jsonPromise.then((json) => console.log(json));
+    //     jsonPromise.catch((error) => console.log(error));
+    // };
 
-        const students = this.createStudentFromRawData(data);
+    // handleError(response) {
+    //     console.log(`brutta storia`, response)
+    // };
 
-        students.forEach(student => {
-            this.getStudentAvatar(student);
-        });
+    async getStudentsData() {
 
-        return students;
+        // const responsePromise = fetch(`/assets/students.json`);
+
+        // responsePromise.then(this.useResponse);
+
+        // responsePromise.catch(this.handleError);
+
+        const studentPromise = fetch(`/assets/students.json`).then((response) => response.json())
+                                                             .then((jsonData) => {
+
+                                                                const students = this.createStudentFromRawData(jsonData);
+                                                                students.forEach(student => {
+                                                                    this.getStudentAvatar(student);
+                                                                });
+                                                        
+                                                                return students;
+                                      
+                                                             })
+                                                             .catch((error) => console.log(error));                                                     
+
+                                                             return studentPromise;
 
         // const richData = this.addAge(data)
         // return richData;
@@ -158,10 +75,11 @@ class DataService {
   `compareByName()` method defined in the `Student` class, and then returns the sorted array of
   students based on their names. */
     getStudentByName() {
-        const students = this.getStudentsData();
+        return this.getStudentsData().then(students => {
         const arrayOfStudents = students.slice();
         arrayOfStudents.sort((s1,s2) => s1.compareByName(s2));
-        return arrayOfStudents;
+        return arrayOfStudents
+    })
     };
 
   /* The `getStudentByAge()` method in the `DataService` class is a function that retrieves student
@@ -169,16 +87,18 @@ class DataService {
   `compareByAge()` method defined in the `Student` class, and then returns the sorted array of
   students based on their ages. */
     getStudentByAge() {
-        const students = this.getStudentsData();
+        return this.getStudentsData().then(students => {
         const arrayOfStudents = students.slice();
         arrayOfStudents.sort((s1,s2) => s1.compareByAge(s2));
         return arrayOfStudents;
+    })
     };
 
   /* The `getShuffledStudents()` method in the `DataService` class is a function that performs the
   following steps: */
-    getShuffledStudents() {
-        const students = this.getStudentsData();
+    async getShuffledStudents() {
+
+        let students = await this.getStudentsData()
         const arrayOfStudents = students.slice();
         const shuffledStudents = this.shuffleArray(arrayOfStudents);
         return shuffledStudents;

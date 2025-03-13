@@ -10,32 +10,38 @@ const service = new DataService();
  * The function `orderByName` retrieves student data by name and then renders it.
  */
 function orderByName() {
-    let studentData = service.getStudentByName();
-    render(studentData)
+    const orderedStudentPromise = service.getStudentByName();
+    orderedStudentPromise.then(studentData => render(studentData));
 };
+
+function getStudents() {
+    const studentPromise = service.getStudentsData();
+    studentPromise.then(studentData => render(studentData));
+}
 
 /**
  * The function `shuffle` retrieves shuffled student data and renders it.
  */
-function shuffle() {
-    let studentData = service.getShuffledStudents();
-    render(studentData)
+async function shuffle() {
+    let studentData = await service.getShuffledStudents();
+    render(studentData);
 };
 
 /**
  * The function orderByAge retrieves student data by age and then renders it.
  */
 function orderByAge() {
-    let studentData = service.getStudentByAge();
-    render(studentData)
+    service.getStudentByAge().then(studentData => render(studentData));
 };
 
 /* The lines `window.orderByAge = orderByAge;`, `window.orderByName = orderByName;`, and
 `window.shuffle = shuffle;` are assigning the functions `orderByAge`, `orderByName`, and `shuffle`
 to properties of the `window` object in the browser environment. */
 window.orderByAge = orderByAge;
+window.getStudents = getStudents;
 window.orderByName = orderByName;
-window.shuffle = shuffle;
+window.shuffle = shuffle
+;
 
 /**
  * The `render` function displays student data in a formatted layout on a web page, grouping students
@@ -95,7 +101,6 @@ function render(studentData) {
             divider.classList.add("divider");
             container.appendChild(divider);
         }
-        
     }
 }
 
