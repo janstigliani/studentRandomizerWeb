@@ -223,9 +223,9 @@ class DataService {
             "./assets/avatar7.jpeg",
             "./assets/avatar8.jpeg",
             "./assets/avatar12.jpeg",
-            // "./assets/avatar22.jpeg",
-            // "./assets/avatar23.jpeg",
-            // "./assets/avatar24.jpeg",
+            "./assets/avatar22.jpg",
+            "./assets/avatar23.jpg",
+            "./assets/avatar24.jpg"
         ];
 
         const avatarFemaleImages = [
@@ -233,7 +233,7 @@ class DataService {
             "./assets/avatar6.jpeg",
             "./assets/avatar18.jpeg",
             "./assets/avatar19.jpeg",
-            "./assets/avatar20.jpeg",
+            "./assets/avatar20.jpeg"
         ];
 
         const avatarDiversityImages = [
@@ -244,7 +244,7 @@ class DataService {
             "./assets/avatar15.jpeg",
             "./assets/avatar16.jpeg",
             "./assets/avatar17.jpeg",
-            // "./assets/avatar21.jpeg",
+            "./assets/avatar21.jpg"
         ];
 
         const avatarAgeImages = [
@@ -255,7 +255,7 @@ class DataService {
             "./assets/avatar10.jpeg",
             "./assets/avatar11.jpeg",
             "./assets/avatar12.jpeg",
-            "./assets/avatar13.jpeg",
+            "./assets/avatar13.jpeg"
         ];
 
         if (student.gender === "M" && student.nationality === "Italiana" && student.getAge() > 35) {
