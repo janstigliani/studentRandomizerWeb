@@ -27,7 +27,7 @@ class DataService {
 
         // responsePromise.catch(this.handleError);
 
-        const studentPromise = fetch(`/assets/students.json`).then((response) => response.json())
+        const studentPromise = fetch(`../../assets/students.json`).then((response) => response.json())
                                                              .then((jsonData) => {
 
                                                                 const students = this.createStudentFromRawData(jsonData);
