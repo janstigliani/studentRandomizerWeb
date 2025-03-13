@@ -27,7 +27,10 @@ class DataService {
 
         // responsePromise.catch(this.handleError);
 
-        const studentPromise = fetch(`/studentRandomizerWeb/assets/students.json`).then((response) => response.json())
+        const devUrl = `/assets/students.json`
+        const prodUrl = `/studentRandomizerWeb/assets/students.json`
+
+        const studentPromise = fetch(prodUrl).then((response) => response.json())
                                                              .then((jsonData) => {
 
                                                                 const students = this.createStudentFromRawData(jsonData);
