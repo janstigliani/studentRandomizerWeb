@@ -31,19 +31,19 @@ class DataService {
         const prodUrl = `/studentRandomizerWeb/assets/students.json`
 
         const studentPromise = fetch(prodUrl).then((response) => response.json())
-                                                             .then((jsonData) => {
+                                             .then((jsonData) => {
 
-                                                                const students = this.createStudentFromRawData(jsonData);
-                                                                students.forEach(student => {
-                                                                    this.getStudentAvatar(student);
-                                                                });
-                                                        
-                                                                return students;
-                                      
-                                                             })
-                                                             .catch((error) => console.log(error));                                                     
+                                                 const students = this.createStudentFromRawData(jsonData);
+                                                 students.forEach(student => {
+                                                     this.getStudentAvatar(student);
+                                                 });
 
-                                                             return studentPromise;
+                                                 return students;
+
+                                             })
+            .catch((error) => console.log(error));
+
+        return studentPromise;
 
         // const richData = this.addAge(data)
         // return richData;
