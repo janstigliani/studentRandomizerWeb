@@ -40,8 +40,7 @@ to properties of the `window` object in the browser environment. */
 window.orderByAge = orderByAge;
 window.getStudents = getStudents;
 window.orderByName = orderByName;
-window.shuffle = shuffle
-;
+window.shuffle = shuffle;
 
 /**
  * The `render` function displays student data in a formatted layout on a web page, grouping students
