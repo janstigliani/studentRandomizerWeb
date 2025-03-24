@@ -74,7 +74,10 @@ function render(studentData) {
             avatarContainer.classList.add("settings-container");
 
             const link = document.createElement("a")
-            link.href = "/edit-student.html?name=" + student.name + "&surname=" + student.surname;
+            const devUrl = "/edit-student.html?name=" + student.name + "&surname=" + student.surname;
+            const prodUrl= "studentRandomizerWeb/edit-student.html?name=" + student.name + "&surname=" + student.surname;
+            
+            link.href = prodUrl;
             const settBtn = document.createElement("button");
             settBtn.classList.add("settings-button");
             const btnNode = document.createTextNode("Edit");
