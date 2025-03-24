@@ -23,7 +23,6 @@ function modify(event, student) {
     console.log(form);
     const data = new FormData(form);
     const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
-    dService.getStudentAvatar(studentobj);
     sService.modifyStudent(studentobj);
     console.log("utente modificato")
 }
@@ -85,7 +84,7 @@ function render(student) {
     const deleteBtn = document.createElement("button");
     const modifyBtn = document.createElement("button");
     // deleteBtn.type = "submit";
-    // modifyBtn.type = "submit";
+    modifyBtn.type = "submit";
     deleteBtn.addEventListener("click", (event) => deleteStudent(event, student));
     modifyBtn.addEventListener("submit", (event) => modify(event, student));
 

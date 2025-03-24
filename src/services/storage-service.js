@@ -67,8 +67,11 @@ class StorageService {
         const surname = student.surname;
         const studentsString = localStorage.getItem("students");
         const studentArray = JSON.parse(studentsString);
-        const studentToDeleteIndex = studentArray.indexOf((student) => student.name === name && student.surname === surname);
-        studentArray.slice(studentToDeleteIndex,1);
+        const studentToDeleteIndex = studentArray.findIndex((student1) => student1.name.toLowerCase() === name.toLowerCase()  && student1.surname.toLowerCase()  === surname.toLowerCase());
+        if(studentToDeleteIndex !== -1){
+            studentArray.splice(studentToDeleteIndex,1);
+        }
+        
         localStorage.setItem("students", JSON.stringify(studentArray));
     }
 
