@@ -19,7 +19,7 @@ class DataService {
     //     console.log(`brutta storia`, response)
     // };
 
-    async getStudentsData() {
+    getStudentsData() {
 
         // const responsePromise = fetch(`/assets/students.json`);
 
@@ -30,7 +30,7 @@ class DataService {
         const devUrl = `/assets/students.json`
         const prodUrl = `/studentRandomizerWeb/assets/students.json`
 
-        const studentPromise = fetch(prodUrl).then((response) => response.json())
+        const studentPromise = fetch(devUrl).then((response) => response.json())
                                              .then((jsonData) => {
 
                                                  const students = this.createStudentFromRawData(jsonData);
@@ -41,7 +41,7 @@ class DataService {
                                                  return students;
 
                                              })
-            .catch((error) => console.log(error));
+                                             .catch((error) => console.log(error));
 
         return studentPromise;
 
@@ -97,36 +97,36 @@ class DataService {
     })
     };
 
-  /* The `getShuffledStudents()` method in the `DataService` class is a function that performs the
-  following steps: */
-    async getShuffledStudents() {
+//   /* The `getShuffledStudents()` method in the `DataService` class is a function that performs the
+//   following steps: */
+//     async getShuffledStudents() {
 
-        let students = await this.getStudentsData()
-        const arrayOfStudents = students.slice();
-        const shuffledStudents = this.shuffleArray(arrayOfStudents);
-        return shuffledStudents;
-    };
+//         let students = await this.getStudentsData()
+//         const arrayOfStudents = students.slice();
+//         const shuffledStudents = this.shuffleArray(arrayOfStudents);
+//         return shuffledStudents;
+//     };
 
-    /* The `shuffleArray(array)` function is a method in the `DataService` class that shuffles the
-    elements of an array in a random order. Here's how it works: */
-    shuffleArray(array) {
-        // const newArray = array.slice();
-        // newArray.sort(() => Math.random()-0.5);
-        // return newArray;
+//     /* The `shuffleArray(array)` function is a method in the `DataService` class that shuffles the
+//     elements of an array in a random order. Here's how it works: */
+//     shuffleArray(array) {
+//         // const newArray = array.slice();
+//         // newArray.sort(() => Math.random()-0.5);
+//         // return newArray;
 
-        const cloneArray = array.slice();
-        const array1 = [];
+//         const cloneArray = array.slice();
+//         const array1 = [];
 
-        while(cloneArray.length > 0) {
-            const randomIndex = Math.floor(Math.random()*cloneArray.length);
-            const randomStudent = cloneArray[randomIndex];
-            array1.push(randomStudent);
-            cloneArray.splice(randomIndex, 1);
-            // const randomStudent = cloneArray.splice(randomIndex,1);
-            // array1.push(randomStudent);
-        }
-        return array1;
-    };
+//         while(cloneArray.length > 0) {
+//             const randomIndex = Math.floor(Math.random()*cloneArray.length);
+//             const randomStudent = cloneArray[randomIndex];
+//             array1.push(randomStudent);
+//             cloneArray.splice(randomIndex, 1);
+//             // const randomStudent = cloneArray.splice(randomIndex,1);
+//             // array1.push(randomStudent);
+//         }
+//         return array1;
+//     };
 
    /**
     * The function `getStudentAvatar` assigns a random avatar image based on the student's gender,

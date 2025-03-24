@@ -102,7 +102,7 @@ footer {
 }
 
 button {
-    min-width: 100px;
+    min-width: 150px;
     border-radius: 20%;
     background: rgba(7, 5, 40, 0.264);
     background: linear-gradient(0deg, rgba(7, 5, 40, 0) 0%, rgba(10, 106, 194, 0.701) 100%);
@@ -111,6 +111,10 @@ button {
     font-style: normal;
     font-size: large;
     color: #f9cd8b;
+}
+
+button:hover{
+    background: linear-gradient(0deg, rgba(22, 13, 196, 0) 0%, rgba(152, 177, 201, 0.701) 100%);
 }
 
 .external-container {
@@ -152,7 +156,29 @@ button {
     border-radius: 50%;
 }
 
-@media (max-width: 600px) {
+.student-form{
+    margin: 20px;
+    text-align: center;
+    background-color: rgba(10, 105, 194, 0.879);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    font-weight: 700;
+}
+
+input, select {
+    background-color: #f9cd8b;
+    color: black;
+}
+
+.settings-button{
+    min-width: 30px;
+    color: black;
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
     header {
         height: auto;
         padding: 20px;

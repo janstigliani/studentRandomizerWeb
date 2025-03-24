@@ -3,19 +3,21 @@
  * DataService module.
  */
 import DataService from "./services/data-service.js";
+import StorageService from "./services/storage-service.js";
 
-const service = new DataService();
+const dService = new DataService();
+const sService = new StorageService(dService);
 
 /**
  * The function `orderByName` retrieves student data by name and then renders it.
  */
 function orderByName() {
-    const orderedStudentPromise = service.getStudentByName();
+    const orderedStudentPromise = dService.getStudentByName();
     orderedStudentPromise.then(studentData => render(studentData));
 };
 
 function getStudents() {
-    const studentPromise = service.getStudentsData();
+    const studentPromise = dService.getStudentsData();
     studentPromise.then(studentData => render(studentData));
 }
 
@@ -23,7 +25,7 @@ function getStudents() {
  * The function `shuffle` retrieves shuffled student data and renders it.
  */
 async function shuffle() {
-    let studentData = await service.getShuffledStudents();
+    let studentData = await sService.getShuffledStudents();
     render(studentData);
 };
 
@@ -31,7 +33,7 @@ async function shuffle() {
  * The function orderByAge retrieves student data by age and then renders it.
  */
 function orderByAge() {
-    service.getStudentByAge().then(studentData => render(studentData));
+    dService.getStudentByAge().then(studentData => render(studentData));
 };
 
 /* The lines `window.orderByAge = orderByAge;`, `window.orderByName = orderByName;`, and
@@ -68,6 +70,22 @@ function render(studentData) {
             const avatarContainer = document.createElement("div");
             avatarContainer.classList.add("avatar-container");
 
+            const settingsContainer = document.createElement("div");
+            avatarContainer.classList.add("settings-container");
+
+            const link = document.createElement("a")
+            link.href="/edit-student.html?name=" + student.name + "&surname=" + student.surname;
+            const settBtn = document.createElement("button");
+            settBtn.classList.add("settings-button");
+            const btnNode = document.createTextNode("Edit");
+            // settBtn.addEventListener("clik", (event) => this.editStudent(event, student))
+
+            settBtn.appendChild(btnNode);
+            link.appendChild(settBtn);
+            settingsContainer.appendChild(link);
+
+            dService.getStudentAvatar(student);
+
             const avatar = document.createElement("img");
             avatar.src = student.avatar;
             avatar.alt = student.name + " " + student.surname;
@@ -87,6 +105,7 @@ function render(studentData) {
             informationContainer.appendChild(genderContainer);
             informationContainer.appendChild(ageContainer);
 
+            studentContainer.appendChild(settingsContainer);
             studentContainer.appendChild(avatarContainer);
             studentContainer.appendChild(informationContainer);
 
@@ -124,3 +143,24 @@ function createTextElement(elementType, text) {
 
     return element;
 }
+
+async function start() {
+    const students = await sService.getStorage();
+    render(students);
+}
+
+start();
+
+//aggiungere queste funzionalità al randomizer:
+
+// 1) ogni volta che il sito viene lanciato, controlla se c'è un array di studenti nel local storage.
+//     -se esite carica quell'array.
+//     -altrimenti scrive il contenuto del json sul local storage e poi carica quello.
+// 2) viene aggiunta la funzionalità "aggiungi studente",
+// quando premo il tasto aggiungi studente viene aperta una nuova pagina con una form
+// che mi consente di aggiungere uno studente e salvarlo nell'array contenuto nel local storage.
+// 3) viene aggiunta la funzione edita studente che aggiunge un tasto ad ogni card studente
+// se premo il tasto edit si apre una nuova form precompilata con i dati dello studente
+// una volta che salvo lo studente editato, viene sovrascritto lo studente precedente.
+// nella form di edit studente c'è anche l'opzione cancella che rimuove lo studente.
+// 4) aggiungi la funziona blocca coppia, che permette di evitare che una coppia venga scoppiata.
