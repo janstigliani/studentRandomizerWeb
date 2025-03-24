@@ -18,12 +18,20 @@ function deleteStudent(event, student) {
 }
 
 function modify(event, student) {
-    event.preventDefault();
-    const form = event.target;
-    console.log(form);
-    const data = new FormData(form);
-    const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
-    sService.modifyStudent(studentobj);
+    // event.preventDefault();
+    // const form = event.target;
+    // console.log(form);
+    // const data = new FormData(form);
+    // const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
+    const param1 = new URLSearchParams(window.location.search);
+    console.log(param1)
+    const newStudentName = param1.get("name");
+    const newStudentSurname = param1.get("surname");
+    const newStudentYob = param1.get("date");
+    const newStudentNationality = param1.get("nationality");
+    const newStudentGender = param1.get("gender")
+    const newStudent = new Student(newStudentName, newStudentSurname, newStudentYob, newStudentNationality, newStudentGender);
+    sService.modifyStudent(student, newStudent);
     console.log("utente modificato")
 }
 
@@ -84,8 +92,9 @@ function render(student) {
     const deleteBtn = document.createElement("button");
     const modifyBtn = document.createElement("button");
     // deleteBtn.type = "submit";
-    modifyBtn.type = "submit";
+    // modifyBtn.type = "submit";
     deleteBtn.addEventListener("click", (event) => deleteStudent(event, student));
+    // modifyBtn.addEventListener("click", (event) => deleteStudent(event, student));
     modifyBtn.addEventListener("submit", (event) => modify(event, student));
 
     const delNode = document.createTextNode("Elimina Utente");
@@ -99,8 +108,8 @@ function render(student) {
 
 }
 
-function start(student){
-    if(student){
+function start(student) {
+    if (student) {
         render(student);
     }
 }

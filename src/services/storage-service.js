@@ -1,3 +1,5 @@
+import Student from "../model/student.js";
+
 class StorageService {
     constructor(service) {
         this.service = service;
@@ -57,9 +59,9 @@ class StorageService {
         return student;
     }
 
-    modifyStudent(student){
+    modifyStudent(student, newStudent){
         this.delete(student);
-        this.save(student);
+        this.save(newStudent);
     }
 
     delete(student){

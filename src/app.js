@@ -74,7 +74,7 @@ function render(studentData) {
             avatarContainer.classList.add("settings-container");
 
             const link = document.createElement("a")
-            link.href="/edit-student.html?name=" + student.name + "&surname=" + student.surname;
+            link.href = "/edit-student.html?name=" + student.name + "&surname=" + student.surname;
             const settBtn = document.createElement("button");
             settBtn.classList.add("settings-button");
             const btnNode = document.createTextNode("Edit");
@@ -114,7 +114,14 @@ function render(studentData) {
 
         container.appendChild(externalContainer);
 
-        if (i < studentData.length-2) {
+        const blockBtn = document.createElement("button");
+        const blockNode1 = document.createTextNode(`Blocca Coppia`);
+        blockBtn.appendChild(blockNode1);
+        // const blockNode2 = document.createTextNode("Scoppia Coppia");
+        blockBtn.addEventListener("click", (event) => blockCuple(event, i));
+        container.appendChild(blockBtn);
+
+        if (i < studentData.length - 2) {
             const divider = document.createElement("div");
             divider.classList.add("divider");
             container.appendChild(divider);
@@ -142,6 +149,10 @@ function createTextElement(elementType, text) {
     element.appendChild(node);
 
     return element;
+}
+
+function blockCuple(event, index) {
+
 }
 
 async function start() {
