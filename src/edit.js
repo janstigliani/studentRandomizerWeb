@@ -18,28 +18,26 @@ function deleteStudent(event, student) {
 }
 
 function modify(event, student) {
-    // event.preventDefault();
-    // const form = event.target;
-    // console.log(form);
-    // const data = new FormData(form);
-    // const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
-    const param1 = new URLSearchParams(window.location.search);
-    console.log(param1)
-    const newStudentName = param1.get("name");
-    const newStudentSurname = param1.get("surname");
-    const newStudentYob = param1.get("date");
-    const newStudentNationality = param1.get("nationality");
-    const newStudentGender = param1.get("gender")
-    const newStudent = new Student(newStudentName, newStudentSurname, newStudentYob, newStudentNationality, newStudentGender);
-    sService.modifyStudent(student, newStudent);
+    event.preventDefault();
+    console.log(event)
+    const form = event.target;
+    console.log(form);
+    const data = new FormData(form);
+    debugger
+    const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
+    sService.modifyStudent(student, studentobj);
     console.log("utente modificato")
 }
 
 window.deleteStudent = deleteStudent;
-window.modify = modify;
+// window.modify = modify;
 
 function render(student) {
     const root = document.getElementById("edit-student-form");
+    root.addEventListener('submit', (event) => {
+        event.preventDefault()
+        modify(event, student)
+    });
 
     let gender2 = ""
     let gender3 = ""
@@ -95,7 +93,11 @@ function render(student) {
     // modifyBtn.type = "submit";
     deleteBtn.addEventListener("click", (event) => deleteStudent(event, student));
     // modifyBtn.addEventListener("click", (event) => deleteStudent(event, student));
-    modifyBtn.addEventListener("submit", (event) => modify(event, student));
+    modifyBtn.addEventListener("submit", (event) => {
+        console.log(event)
+        event.preventDefault()
+        modify(event, student)
+    });
 
     const delNode = document.createTextNode("Elimina Utente");
     const modNode = document.createTextNode("Salva Modifiche");

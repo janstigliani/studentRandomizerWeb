@@ -152,7 +152,7 @@ function createTextElement(elementType, text) {
 }
 
 function blockCuple(event, index) {
-
+    
 }
 
 async function start() {
