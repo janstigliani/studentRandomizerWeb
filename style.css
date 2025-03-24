@@ -45,6 +45,18 @@ footer {
     align-items: center;
 }
 
+dialog{
+    min-width: 200px;
+    border-radius: 20%;
+    background: rgba(7, 5, 40, 0.264);
+    background: linear-gradient(0deg, rgba(7, 5, 40, 0.555) 0%, rgba(10, 105, 194, 0.999) 100%);
+    font-family: "Smythe", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+    color: #f9cd8b;
+}
+
 .head {
     color: #f9cd8b;
     font-size: 3rem;
@@ -176,6 +188,12 @@ input, select {
     min-width: 30px;
     color: black;
     font-weight: 700;
+}
+
+.dialog-btn{
+    min-width: 30px;
+    font-weight: 700;
+    margin-left: 20px;
 }
 
 @media (max-width: 800px) {

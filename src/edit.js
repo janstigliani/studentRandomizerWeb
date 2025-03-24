@@ -14,19 +14,36 @@ const student = sService.getStudentByNameAndSurname(name, surname);
 function deleteStudent(event, student) {
     event.preventDefault();
     sService.delete(student);
-    console.log("utente eliminato")
+
+    const dialog = document.getElementById("dialog");
+    dialog.innerHTML="";
+    const btn = document.createElement("button");
+    btn.classList.add("dialog-btn")
+    dialog.appendChild(document.createTextNode("studente eliminato con successo!"));
+    btn.appendChild(document.createTextNode("Ok"));
+    dialog.appendChild(btn);
+    btn.addEventListener("click", () => dialog.close());
+    
+    dialog.showModal();
 }
 
 function modify(event, student) {
     event.preventDefault();
-    console.log(event)
     const form = event.target;
-    console.log(form);
     const data = new FormData(form);
-    debugger
     const studentobj = new Student(data.get("name"), data.get("surname"), Number(data.get("date")), data.get("gender"), data.get("nationality"));
     sService.modifyStudent(student, studentobj);
-    console.log("utente modificato")
+    
+    const dialog = document.getElementById("dialog");
+    dialog.innerHTML="";
+    const btn = document.createElement("button");
+    btn.classList.add("dialog-btn")
+    dialog.appendChild(document.createTextNode("studente modificato con successo!"));
+    btn.appendChild(document.createTextNode("Ok"));
+    dialog.appendChild(btn);
+    btn.addEventListener("click", () => dialog.close());
+    
+    dialog.showModal();
 }
 
 window.deleteStudent = deleteStudent;

@@ -152,7 +152,9 @@ function createTextElement(elementType, text) {
 }
 
 function blockCuple(event, index) {
-    
+//     event.preventDefault();
+//     sService.extractCouple(index);
+//     start();
 }
 
 async function start() {
