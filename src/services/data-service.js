@@ -30,7 +30,7 @@ class DataService {
         const devUrl = `/assets/students.json`
         const prodUrl = `/studentRandomizerWeb/assets/students.json`
 
-        const studentPromise = fetch(devUrl).then((response) => response.json())
+        const studentPromise = fetch(prodUrl).then((response) => response.json())
                                              .then((jsonData) => {
 
                                                  const students = this.createStudentFromRawData(jsonData);
