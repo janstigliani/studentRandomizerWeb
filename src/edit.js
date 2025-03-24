@@ -17,11 +17,14 @@ function deleteStudent(event, student) {
 
     const dialog = document.getElementById("dialog");
     dialog.innerHTML="";
+    const link = document.createElement("a");
+    link.href="../edit-student.html"
     const btn = document.createElement("button");
     btn.classList.add("dialog-btn")
     dialog.appendChild(document.createTextNode("studente eliminato con successo!"));
     btn.appendChild(document.createTextNode("Ok"));
-    dialog.appendChild(btn);
+    link.appendChild(btn);
+    dialog.appendChild(link);
     btn.addEventListener("click", () => dialog.close());
     
     dialog.showModal();
@@ -36,11 +39,14 @@ function modify(event, student) {
     
     const dialog = document.getElementById("dialog");
     dialog.innerHTML="";
+    const link = document.createElement("a");
+    link.href="../edit-student.html"
     const btn = document.createElement("button");
     btn.classList.add("dialog-btn")
     dialog.appendChild(document.createTextNode("studente modificato con successo!"));
     btn.appendChild(document.createTextNode("Ok"));
-    dialog.appendChild(btn);
+    link.appendChild(btn);
+    dialog.appendChild(link);
     btn.addEventListener("click", () => dialog.close());
     
     dialog.showModal();
