@@ -75,8 +75,7 @@ function render(studentData) {
 
             const link = document.createElement("a")
             const devUrl = "/edit-student.html?name=" + student.name + "&surname=" + student.surname;
-            const prodUrl= "studentRandomizerWeb/edit-student.html?name=" + student.name + "&surname=" + student.surname;
-            
+            const prodUrl= "./studentRandomizerWeb/edit-student.html?name=" + student.name + "&surname=" + student.surname;
             link.href = prodUrl;
             const settBtn = document.createElement("button");
             settBtn.classList.add("settings-button");
