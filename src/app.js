@@ -195,7 +195,7 @@ function blockCuple(event, student1, student2, btn) {
 
 
     } else {
-        const dialog = document.getElementById("dialog");
+        const dialog = document.createElement("dialog");
         dialog.innerHTML = "";
         const btn = document.createElement("button");
         btn.classList.add("dialog-btn");
