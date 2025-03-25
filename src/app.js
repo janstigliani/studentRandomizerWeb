@@ -89,12 +89,11 @@ function render(studentData) {
             const settingsContainer = document.createElement("div");
             avatarContainer.classList.add("settings-container");
 
-            const link = document.createElement("a")
+            const link = document.createElement("a");
             link.href = "./edit-student.html?name=" + student.name + "&surname=" + student.surname;
             const settBtn = document.createElement("button");
             settBtn.classList.add("settings-button");
             const btnNode = document.createTextNode("Edit");
-            // settBtn.addEventListener("clik", (event) => this.editStudent(event, student))
 
             settBtn.appendChild(btnNode);
             link.appendChild(settBtn);
@@ -130,11 +129,15 @@ function render(studentData) {
 
         container.appendChild(externalContainer);
 
+        // Create a consistent key by sorting the names alphabetically
+        const coupleKey = [studentData[i].name + "-" + studentData[i].surname, studentData[i + 1]?.name + "-" + studentData[i + 1]?.surname]
+            .sort()
+            .join("_");
+
+        const isBlocked = localStorage.getItem(coupleKey) === "blocked";
+
         const blockBtn = document.createElement("button");
-        blockBtn.innerText = `Blocca Coppia`
-        // const blockNode1 = document.createTextNode(`Blocca Coppia`);
-        // blockBtn.appendChild(blockNode1);
-        // const blockNode2 = document.createTextNode("Scoppia Coppia");
+        blockBtn.innerText = isBlocked ? "Scoppia Coppia" : "Blocca Coppia";
         blockBtn.addEventListener("click", (event) => blockCuple(event, studentData[i], studentData[i + 1], blockBtn));
         container.appendChild(blockBtn);
 
@@ -170,19 +173,33 @@ function createTextElement(elementType, text) {
 
 function blockCuple(event, student1, student2, btn) {
     event.preventDefault();
+
     if (student1 && student2) {
         sService.getCoupleState(student1, student2);
-        if (btn.innerText === `Blocca Coppia`) {
-            btn.innerText = "Scoppia Coppia";
+        // Create a consistent key by sorting the names alphabetically
+        const coupleKey = [student1.name + "-" + student1.surname, student2.name + "-" + student2.surname]
+            .sort()
+            .join("_");
+
+        const currentState = localStorage.getItem(coupleKey);
+
+        if (currentState === "blocked") {
+            // If the couple is already blocked, unblock it
+            localStorage.removeItem(coupleKey);
+            btn.innerText = "Blocca Coppia";
         } else {
-            btn.innerText = `Blocca Coppia`;
+            // If the couple is not blocked, block it
+            localStorage.setItem(coupleKey, "blocked");
+            btn.innerText = "Scoppia Coppia";
         }
+
+
     } else {
         const dialog = document.getElementById("dialog");
         dialog.innerHTML = "";
         const btn = document.createElement("button");
-        btn.classList.add("dialog-btn")
-        dialog.appendChild(document.createTextNode("non è una coppia!"));
+        btn.classList.add("dialog-btn");
+        dialog.appendChild(document.createTextNode("Non è una coppia!"));
         btn.appendChild(document.createTextNode("Ok"));
         dialog.appendChild(btn);
         btn.addEventListener("click", () => dialog.close());
