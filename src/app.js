@@ -131,10 +131,11 @@ function render(studentData) {
         container.appendChild(externalContainer);
 
         const blockBtn = document.createElement("button");
-        const blockNode1 = document.createTextNode(`Blocca Coppia`);
-        blockBtn.appendChild(blockNode1);
+        blockBtn.innerText=`Blocca Coppia`
+        // const blockNode1 = document.createTextNode(`Blocca Coppia`);
+        // blockBtn.appendChild(blockNode1);
         // const blockNode2 = document.createTextNode("Scoppia Coppia");
-        blockBtn.addEventListener("click", (event) => blockCuple(event, studentData[i], studentData[i+1]));
+        blockBtn.addEventListener("click", (event) => blockCuple(event, studentData[i], studentData[i+1], blockBtn));
         container.appendChild(blockBtn);
 
         if (i < studentData.length - 2) {
@@ -167,9 +168,27 @@ function createTextElement(elementType, text) {
     return element;
 }
 
-function blockCuple(event, student1, student2) {
+function blockCuple(event, student1, student2, btn) {
     event.preventDefault();
-    sService.getCoupleState(student1, student2);
+    if (student1 && student2) {
+        sService.getCoupleState(student1, student2);
+        if (btn.innerText === `Blocca Coppia`) {
+            btn.innerText = "Scoppia Coppia";
+        } else {
+            btn.innerText = `Blocca Coppia`;
+        }
+    } else {
+        const dialog = document.getElementById("dialog");
+        dialog.innerHTML = "";
+        const btn = document.createElement("button");
+        btn.classList.add("dialog-btn")
+        dialog.appendChild(document.createTextNode("non è una coppia!"));
+        btn.appendChild(document.createTextNode("Ok"));
+        dialog.appendChild(btn);
+        btn.addEventListener("click", () => dialog.close());
+
+        dialog.showModal();
+    }
 }
 
 async function start() {
