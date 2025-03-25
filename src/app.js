@@ -25,8 +25,24 @@ function getStudents() {
  * The function `shuffle` retrieves shuffled student data and renders it.
  */
 async function shuffle() {
-    let studentData = await sService.getShuffledStudents();
-    render(studentData);
+    const studentData = await sService.getShuffledStudents();
+    let copyArray = [...studentData];
+    const blockedCouples = sService.getCouples();
+
+    for (const student of blockedCouples) {
+        const name = student.name;
+        const surname = student.surname
+        for (const studentFromAll of copyArray) {
+            if (studentFromAll.name === name && studentFromAll.surname === surname) {
+                const studentToDeleteIndex = copyArray.indexOf(studentFromAll);
+                copyArray.splice(studentToDeleteIndex,1);
+            }
+        }
+         copyArray.unshift(student)
+        
+    }//check between array: couple students eliminated from student data, add couple students as first two parameters
+    
+    render(copyArray);
 };
 
 /**
@@ -118,7 +134,7 @@ function render(studentData) {
         const blockNode1 = document.createTextNode(`Blocca Coppia`);
         blockBtn.appendChild(blockNode1);
         // const blockNode2 = document.createTextNode("Scoppia Coppia");
-        blockBtn.addEventListener("click", (event) => blockCuple(event, i));
+        blockBtn.addEventListener("click", (event) => blockCuple(event, studentData[i], studentData[i+1]));
         container.appendChild(blockBtn);
 
         if (i < studentData.length - 2) {
@@ -151,10 +167,9 @@ function createTextElement(elementType, text) {
     return element;
 }
 
-function blockCuple(event, index) {
-//     event.preventDefault();
-//     sService.extractCouple(index);
-//     start();
+function blockCuple(event, student1, student2) {
+    event.preventDefault();
+    sService.getCoupleState(student1, student2);
 }
 
 async function start() {

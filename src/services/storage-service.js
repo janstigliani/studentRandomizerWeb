@@ -77,6 +77,45 @@ class StorageService {
         localStorage.setItem("students", JSON.stringify(studentArray));
     }
 
+    getCoupleState(student1, student2) {
+        
+    const studentCouplesString = localStorage.getItem("studentCouples");
+    let studentCouplesArray = studentCouplesString ? JSON.parse(studentCouplesString) : [];
+
+    // Controlla se la coppia esiste già
+    const coupleExists = studentCouplesArray.some(couple => 
+        (couple[0].name === student1.name && couple[0].surname === student1.surname &&
+         couple[1].name === student2.name && couple[1].surname === student2.surname) ||
+        (couple[0].name === student2.name && couple[0].surname === student2.surname &&
+         couple[1].name === student1.name && couple[1].surname === student1.surname)
+    );
+
+    if (coupleExists) {
+        studentCouplesArray = studentCouplesArray.filter(couple => 
+            !((couple[0].name === student1.name && couple[0].surname === student1.surname &&
+               couple[1].name === student2.name && couple[1].surname === student2.surname) ||
+              (couple[0].name === student2.name && couple[0].surname === student2.surname &&
+               couple[1].name === student1.name && couple[1].surname === student1.surname))
+        );
+    } else {
+        studentCouplesArray.push([student1, student2]);
+    }
+
+    localStorage.setItem("studentCouples", JSON.stringify(studentCouplesArray));
+    }
+
+    getCouples(){
+        const studentCouplesString = localStorage.getItem("studentCouples");
+        if (studentCouplesString) {
+            const studentCouplesArray = JSON.parse(studentCouplesString);
+            const allStudents = studentCouplesArray.flat();
+            const studentsObj = this.service.createStudentFromRawData(allStudents);
+            return studentsObj;
+        } else {
+            return [];
+        }
+    }
+
 }
 
 export default StorageService;
