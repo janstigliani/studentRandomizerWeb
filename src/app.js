@@ -60,15 +60,12 @@ window.getStudents = getStudents;
 window.orderByName = orderByName;
 window.shuffle = shuffle;
 
-// Maintain the state of each block button by pairing them with student1 and student2
-const buttonStates = new Map();
-
 /**
- * The `render` function dynamically creates and populates a student display container with information
- * and edit buttons for each student in the provided data array, as well as a block button for each
- * student pair.
- * @param studentData - An array of student objects containing information such as name, surname,
- * avatar, nationality, gender, and a method getAge() to calculate the age of the student.
+ * The `render` function displays student data in a formatted layout on a web page, grouping students
+ * in pairs and including their avatar, name, nationality, gender, and age.
+ * @param studentData - An array of student objects, where each student object contains properties like
+ * `name`, `surname`, `avatar`, `nationality`, `gender`, and a method `getAge()` that returns the age
+ * of the student.
  */
 function render(studentData) {
     const container = document.getElementById("students-container");
@@ -90,33 +87,43 @@ function render(studentData) {
             avatarContainer.classList.add("avatar-container");
 
             const settingsContainer = document.createElement("div");
-            settingsContainer.classList.add("settings-container");
+            avatarContainer.classList.add("settings-container");
 
-            const link = document.createElement("a");
-            link.href = `./edit-student.html?name=${student.name}&surname=${student.surname}`;
+            const link = document.createElement("a")
+            link.href = "./edit-student.html?name=" + student.name + "&surname=" + student.surname;
             const settBtn = document.createElement("button");
             settBtn.classList.add("settings-button");
-            settBtn.textContent = "Edit";
+            const btnNode = document.createTextNode("Edit");
+            // settBtn.addEventListener("clik", (event) => this.editStudent(event, student))
+
+            settBtn.appendChild(btnNode);
             link.appendChild(settBtn);
             settingsContainer.appendChild(link);
 
+            dService.getStudentAvatar(student);
+
             const avatar = document.createElement("img");
             avatar.src = student.avatar;
-            avatar.alt = `${student.name} ${student.surname}`;
+            avatar.alt = student.name + " " + student.surname;
             avatar.classList.add("avatar");
             avatarContainer.appendChild(avatar);
 
             const informationContainer = document.createElement("div");
             informationContainer.classList.add("information-container");
 
-            const nameContainer = createTextElement("h3", `${student.name} ${student.surname}`);
-            const countryContainer = createTextElement("span", `Nazionalità: ${student.nationality}`);
-            const genderContainer = createTextElement("span", `Genere: ${student.gender}`);
-            const ageContainer = createTextElement("span", `Età: ${student.getAge()} anni`);
+            const nameContainer = createTextElement("h3", student.name + " " + student.surname);
+            const countryContainer = createTextElement("span", "Nazionalità: " + student.nationality);
+            const genderContainer = createTextElement("span", "Genere: " + student.gender);
+            const ageContainer = createTextElement("span", "Età: " + student.getAge() + " anni");
 
-            informationContainer.append(nameContainer, countryContainer, genderContainer, ageContainer);
+            informationContainer.appendChild(nameContainer);
+            informationContainer.appendChild(countryContainer);
+            informationContainer.appendChild(genderContainer);
+            informationContainer.appendChild(ageContainer);
 
-            studentContainer.append(settingsContainer, avatarContainer, informationContainer);
+            studentContainer.appendChild(settingsContainer);
+            studentContainer.appendChild(avatarContainer);
+            studentContainer.appendChild(informationContainer);
 
             externalContainer.appendChild(studentContainer);
         }
@@ -124,17 +131,11 @@ function render(studentData) {
         container.appendChild(externalContainer);
 
         const blockBtn = document.createElement("button");
-        const studentPair = `${studentData[i].name}-${studentData[i + 1]?.name || "none"}`;
-
-        // Set the button text based on its state
-        blockBtn.innerText = buttonStates.get(studentPair) || "Blocca Coppia";
-
-        blockBtn.addEventListener("click", (event) => {
-            blockCuple(event, studentData[i], studentData[i + 1], blockBtn);
-            // Update the state of the button in the map
-            buttonStates.set(studentPair, blockBtn.innerText);
-        });
-
+        blockBtn.innerText = `Blocca Coppia`
+        // const blockNode1 = document.createTextNode(`Blocca Coppia`);
+        // blockBtn.appendChild(blockNode1);
+        // const blockNode2 = document.createTextNode("Scoppia Coppia");
+        blockBtn.addEventListener("click", (event) => blockCuple(event, studentData[i], studentData[i + 1], blockBtn));
         container.appendChild(blockBtn);
 
         if (i < studentData.length - 2) {
