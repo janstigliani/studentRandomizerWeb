@@ -18,7 +18,7 @@ function deleteStudent(event, student) {
     const dialog = document.getElementById("dialog");
     dialog.innerHTML="";
     const link = document.createElement("a");
-    link.href="studentRandomizerWeb/edit-student.html"
+    link.href="./studentRandomizerWeb/edit-student.html"
     const btn = document.createElement("button");
     btn.classList.add("dialog-btn")
     dialog.appendChild(document.createTextNode("studente eliminato con successo!"));
@@ -28,6 +28,7 @@ function deleteStudent(event, student) {
     btn.addEventListener("click", () => dialog.close());
     
     dialog.showModal();
+    window.reload;
 }
 
 function modify(event, student) {
@@ -40,7 +41,7 @@ function modify(event, student) {
     const dialog = document.getElementById("dialog");
     dialog.innerHTML="";
     const link = document.createElement("a");
-    link.href="studentRandomizerWeb/edit-student.html"
+    link.href="./studentRandomizerWeb/edit-student.html"
     const btn = document.createElement("button");
     btn.classList.add("dialog-btn")
     dialog.appendChild(document.createTextNode("studente modificato con successo!"));
@@ -50,6 +51,7 @@ function modify(event, student) {
     btn.addEventListener("click", () => dialog.close());
     
     dialog.showModal();
+    window.reload;
 }
 
 window.deleteStudent = deleteStudent;
